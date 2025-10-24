@@ -14,26 +14,26 @@ func _process(delta: float) -> void:
 	if not is_moving:
 		sprite.play("idle")
 	else:
-		sprite.play("dash")
+		sprite.play("dash2")
 		
 
 func _physics_process(delta: float) -> void:
 	if not is_moving or canMove:
-		if Input.is_action_just_pressed("ui_right"):
+		if Input.is_action_just_pressed("dash_right"):
 			velocity = Vector2.RIGHT * DASH_SPEED
 			is_moving = true
 			rotation_degrees = 270
-		elif Input.is_action_just_pressed("ui_left"):
+		elif Input.is_action_just_pressed("dash_left"):
 			velocity = Vector2.LEFT * DASH_SPEED
 			is_moving = true
 			rotation_degrees = 90
 			
-		elif Input.is_action_just_pressed("ui_down"):
+		elif Input.is_action_just_pressed("dash_down"):
 			velocity = Vector2.DOWN * DASH_SPEED
 			is_moving = true
 			rotation_degrees = 0
 			
-		elif Input.is_action_just_pressed("ui_up"):
+		elif Input.is_action_just_pressed("dash_up"):
 			velocity = Vector2.UP * DASH_SPEED
 			is_moving = true
 			rotation_degrees = 180
@@ -42,20 +42,16 @@ func _physics_process(delta: float) -> void:
 	if is_moving:
 		var collision = get_last_slide_collision()
 		
-		# Si 'collision' no es 'null', es que chocamos con algo
 		if collision:
-			# ¡Hemos chocado!
 			canMove = true
-			is_moving = false      # Volvemos al estado "PARADO"
-			velocity = Vector2.ZERO  # Frenamos en seco
+			is_moving = false
+			velocity = Vector2.ZERO  
 			
 			
 		else:
 			canMove = false
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	pass
-
-
-func _on_dash_timer_timeout() -> void:
-	pass # Replace with function body.
+	if body.is_in_group("spikes"):
+		
+		queue_free()
