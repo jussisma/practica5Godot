@@ -15,6 +15,10 @@ run/main_scene="uid://c05e44ee2p23i"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameManager="*res://GameManager.gd"
+
 [display]
 
 window/size/viewport_width=560
@@ -29,6 +33,9 @@ version_control/autoload_on_startup=true
 
 ground=""
 spikes=""
+consumiblePeque=""
+player=""
+consumibleGrande=""
 
 [input]
 

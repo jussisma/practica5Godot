@@ -1,20 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://bs304tnwgk7i3"]
+[gd_scene load_steps=21 format=3 uid="uid://bs304tnwgk7i3"]
 
 [ext_resource type="Texture2D" uid="uid://d1sluk1pdbbgq" path="res://Sprites/Prototype_Character.png" id="1_glpr6"]
 [ext_resource type="Script" uid="uid://dx45qf3r0meid" path="res://characterController.gd" id="1_pjt0s"]
 [ext_resource type="Texture2D" uid="uid://mxfute61reu1" path="res://Sprites/dash.png" id="3_wa5vi"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pjt0s"]
-atlas = ExtResource("1_glpr6")
-region = Rect2(0, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wa5vi"]
-atlas = ExtResource("1_glpr6")
-region = Rect2(16, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wfnr8"]
-atlas = ExtResource("1_glpr6")
-region = Rect2(32, 32, 16, 16)
+[ext_resource type="Texture2D" uid="uid://bplfm6tx0wa6d" path="res://Sprites/Prototype_Character2.png" id="3_wfnr8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c1b4b"]
 atlas = ExtResource("3_wa5vi")
@@ -31,6 +20,18 @@ region = Rect2(16, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_x1sy7"]
 atlas = ExtResource("3_wa5vi")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sm1rv"]
+atlas = ExtResource("3_wfnr8")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jx0ln"]
+atlas = ExtResource("3_wfnr8")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpiy1"]
+atlas = ExtResource("3_wfnr8")
+region = Rect2(32, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_px5sl"]
 atlas = ExtResource("1_glpr6")
@@ -60,20 +61,6 @@ region = Rect2(48, 16, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pjt0s")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wa5vi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wfnr8")
-}],
-"loop": false,
-"name": &"dash",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_c1b4b")
 }, {
 "duration": 1.0,
@@ -87,6 +74,20 @@ animations = [{
 }],
 "loop": true,
 "name": &"dash2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sm1rv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jx0ln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lpiy1")
+}],
+"loop": false,
+"name": &"death",
 "speed": 5.0
 }, {
 "frames": [{

@@ -9,11 +9,12 @@ var is_moving:bool = false
 var canMove:bool = true
 var isX:bool
 var target_rotation:float
+var dying:bool = false
 
 func _process(delta: float) -> void:
-	if not is_moving:
+	if not is_moving and not dying:
 		sprite.play("idle")
-	else:
+	elif is_moving and not dying:
 		sprite.play("dash2")
 		
 
@@ -53,5 +54,11 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("spikes"):
-		rotation_degrees -= 90
-		queue_free()
+		dying = true
+		rotation_degrees = 0
+		sprite.play("death")
+		sprite.animation_finished.connect(eliminar)
+		
+		
+func eliminar() -> void:
+	queue_free()
