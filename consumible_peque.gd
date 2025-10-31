@@ -1,9 +1,8 @@
-extends AnimatedSprite2D
-@onready var area_2d: Area2D = $Area2D
+extends Area2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
+func _on_body_entered(body: Node2D) -> void:
 
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	GameManager.on_consumable_collected(self)
-
-	area_2d.monitoring = false
+	if body.is_in_group("player"):
+		GameManager.on_consumable_collected(self)
+		self.monitoring = false
