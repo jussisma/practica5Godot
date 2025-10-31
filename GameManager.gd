@@ -1,8 +1,11 @@
 extends Node
+@onready var label: Label = $CanvasLayer/Label
 
 # Aquí se guarda la puntuación
 var score: int = 0
 
+func getScore() -> int:
+	return score
 
 # Esta señal es para que tu UI (interfaz) pueda escuchar
 # los cambios de puntuación y actualizarse.

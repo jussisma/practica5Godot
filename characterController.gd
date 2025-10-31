@@ -19,25 +19,26 @@ func _process(delta: float) -> void:
 		
 
 func _physics_process(delta: float) -> void:
-	if not is_moving or canMove:
-		if Input.is_action_just_pressed("dash_right"):
-			velocity = Vector2.RIGHT * DASH_SPEED
-			is_moving = true
-			rotation_degrees = 270
-		elif Input.is_action_just_pressed("dash_left"):
-			velocity = Vector2.LEFT * DASH_SPEED
-			is_moving = true
-			rotation_degrees = 90
+	if not dying:
+		if not is_moving or canMove:
+			if Input.is_action_just_pressed("dash_right"):
+				velocity = Vector2.RIGHT * DASH_SPEED
+				is_moving = true
+				rotation_degrees = 270
+			elif Input.is_action_just_pressed("dash_left"):
+				velocity = Vector2.LEFT * DASH_SPEED
+				is_moving = true
+				rotation_degrees = 90
 			
-		elif Input.is_action_just_pressed("dash_down"):
-			velocity = Vector2.DOWN * DASH_SPEED
-			is_moving = true
-			rotation_degrees = 0
+			elif Input.is_action_just_pressed("dash_down"):
+				velocity = Vector2.DOWN * DASH_SPEED
+				is_moving = true
+				rotation_degrees = 0
 			
-		elif Input.is_action_just_pressed("dash_up"):
-			velocity = Vector2.UP * DASH_SPEED
-			is_moving = true
-			rotation_degrees = 180
+			elif Input.is_action_just_pressed("dash_up"):
+				velocity = Vector2.UP * DASH_SPEED
+				is_moving = true
+				rotation_degrees = 180
 	
 	move_and_slide()
 	if is_moving:
