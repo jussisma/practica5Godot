@@ -1,8 +1,32 @@
 extends Node
 @onready var label: Label = $CanvasLayer/Label
+const SONIDO_MUERTE = preload("res://Sound/Hurt.wav")
+const SONIDO_MOVIMIENTO = preload("res://Sound/Jump.wav")
+const SONIDO_CONSUMIBLE = preload("res://Sound/pickupCoin.wav")
+const MUSICA = preload("res://Sound/Music.wav")
+@onready var sfx_player: AudioStreamPlayer2D = $SFXPlayer
+@onready var sfx_player_movement: AudioStreamPlayer2D = $SFXPlayerMovement
+@onready var sfx_player_music: AudioStreamPlayer2D = $SFXPlayerMusic
+
 
 # Aquí se guarda la puntuación
 var score: int = 0
+
+func _ready() -> void:
+	sfx_player_music.stream = MUSICA
+	sfx_player_music.play()
+
+func play_sfx(nombre):
+	if nombre == "muerte":
+		sfx_player.stream = SONIDO_MUERTE
+	if nombre == "movimiento":
+		sfx_player_movement.stream = SONIDO_MOVIMIENTO
+	if nombre == "consumible":
+		sfx_player.stream = SONIDO_CONSUMIBLE
+	sfx_player.play()
+	sfx_player_movement.play()
+	
+	
 
 func reiniciar_nivel():
 	score = 0

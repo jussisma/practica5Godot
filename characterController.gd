@@ -26,21 +26,22 @@ func _physics_process(delta: float) -> void:
 				velocity = Vector2.RIGHT * DASH_SPEED
 				is_moving = true
 				rotation_degrees = 270
+				GameManager.play_sfx("movimiento")
 			elif Input.is_action_just_pressed("dash_left"):
 				velocity = Vector2.LEFT * DASH_SPEED
 				is_moving = true
 				rotation_degrees = 90
-			
+				GameManager.play_sfx("movimiento")
 			elif Input.is_action_just_pressed("dash_down"):
 				velocity = Vector2.DOWN * DASH_SPEED
 				is_moving = true
 				rotation_degrees = 0
-			
+				GameManager.play_sfx("movimiento")
 			elif Input.is_action_just_pressed("dash_up"):
 				velocity = Vector2.UP * DASH_SPEED
 				is_moving = true
 				rotation_degrees = 180
-	
+				GameManager.play_sfx("movimiento")
 	move_and_slide()
 	if is_moving:
 		var collision = get_last_slide_collision()
@@ -62,6 +63,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		sprite.play("death")
 		sprite.animation_finished.connect(eliminar)
 		pincho = false
+		GameManager.play_sfx("muerte")
 		
 		
 func eliminar() -> void:
@@ -77,3 +79,4 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		sprite.play("death")
 		sprite.animation_finished.connect(eliminar)
 		pincho = false
+		GameManager.play_sfx("muerte")

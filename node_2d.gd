@@ -29,6 +29,7 @@ func _ready():
 	deathArea.add_to_group("spikes")
 	spawn_objetos_desde_tilemap()
 	
+	
 	# --- CORRECCIÓN 1 ---
 	# Configura el timer como "one_shot" AQUÍ, una sola vez.
 	timer_muerte.one_shot = true
