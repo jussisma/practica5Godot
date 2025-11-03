@@ -7,6 +7,7 @@
 radius = 8.0
 
 [node name="Area2D" type="Area2D" groups=["consumibleGrande"]]
+position = Vector2(-6, -6)
 script = ExtResource("2_fx75m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

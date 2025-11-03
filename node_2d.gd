@@ -29,25 +29,14 @@ func spawn_objetos_desde_tilemap():
 		colocar_objeto(CONSUMIBLE_PEQUENO_SCENE, grid_pos)
 		
 		# (Opcional) Borra el tile de "punto rojo" para que no se vea en el juego
-		consumibles.set_cell(grid_pos) # Borra el tile
-
-func colocar_consumibles():
-	
-	var grid_pos = Vector2i(5, 3)
-	
-	colocar_objeto(CONSUMIBLE_PEQUENO_SCENE, grid_pos)
-	
-	var posiciones_grandes = [Vector2i(2, 2), Vector2i(10, 2), Vector2i(2, 8), Vector2i(10, 8)]
-	
-	for pos in posiciones_grandes:
-		colocar_objeto(CONSUMIBLE_GRANDE_SCENE, pos)
+		consumibles.set_cell(grid_pos, -1) # Borra el tile
 
 func colocar_objeto(escena_para_instanciar, grid_pos):
 	
-	var mundo_pos = tilemap.map_to_local(grid_pos)
+	var mundo_pos = consumibles.map_to_local(grid_pos)
 	
-	var cell_size = tilemap.tile_set.tile_size
-	mundo_pos += cell_size / 2.0
+	var cell_size = consumibles.tile_set.tile_size
+	mundo_pos += cell_size  /12.0
 	
 	var instancia = escena_para_instanciar.instantiate()
 	
