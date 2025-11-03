@@ -4,6 +4,14 @@ extends Node
 # Aquí se guarda la puntuación
 var score: int = 0
 
+func reiniciar_nivel():
+	score = 0
+	var error = get_tree().reload_current_scene()
+	
+	if error != OK:
+		print("error")
+	
+
 func getScore() -> int:
 	return score
 
