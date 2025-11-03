@@ -5,4 +5,4 @@ func _on_body_entered(body: Node2D) -> void:
 
 	if body.is_in_group("player"):
 		GameManager.on_consumable_collected(self)
-		self.monitor = false
+		self.monitoring = false
