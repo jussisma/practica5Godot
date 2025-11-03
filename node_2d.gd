@@ -3,6 +3,7 @@ extends Node2D
 const CONSUMIBLE_PEQUENO_SCENE = preload("res://consumiblePeque.tscn")
 const CONSUMIBLE_GRANDE_SCENE = preload("res://consuGrande.tscn")
 const CHARACTER = preload("res://character.tscn")
+const DEATH_AREA = preload("res://deathArea.tscn")
 
 @onready var tilemap: TileMapLayer = $Bloques
 @onready var consumibles_container: Node2D = $Consumibles
@@ -12,6 +13,7 @@ const CHARACTER = preload("res://character.tscn")
 @onready var timer_muerte: Timer = $TimerMuerte
 @onready var player: CharacterBody2D = $CharacterBody2D
 var instanciaCharacter = CHARACTER.instantiate()
+var deathArea = DEATH_AREA.instantiate()
 var toDie:bool = false
 @onready var camera: Camera2D = $Camera2D
 
@@ -21,7 +23,10 @@ func _ready():
 	instanciaCharacter.global_position = Vector2(214,135)
 	instanciaCharacter.global_scale = Vector2(0.5,0.5)
 	instanciaCharacter.add_to_group("player")
-	instanciaCharacter.add_child(camera)
+	self.add_child(deathArea)
+	deathArea.global_position = Vector2(110,445)
+	deathArea.global_scale = Vector2(5,2.921)
+	deathArea.add_to_group("spikes")
 	spawn_objetos_desde_tilemap()
 	
 	# --- CORRECCIÓN 1 ---
