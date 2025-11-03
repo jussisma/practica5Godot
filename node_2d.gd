@@ -78,5 +78,4 @@ func _on_timer_muerte_timeout() -> void:
 	instanciaCharacter.global_scale = Vector2(0.5,0.5)
 	instanciaCharacter.add_to_group("player")
 	timer_muerte.one_shot = true
-	player.dying = false
 	
