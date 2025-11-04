@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://dscdcqiitckbn"]
+
+[ext_resource type="Script" uid="uid://cf8iwfi1pqtob" path="res://win_area.gd" id="1_lc7x4"]
+[ext_resource type="Texture2D" uid="uid://bo4hbloq0m2qf" path="res://Sprites/Green Effect and Bullet 16x16.png" id="1_wkndv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lc7x4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32vr6"]
+atlas = ExtResource("1_wkndv")
+region = Rect2(384, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvu30"]
+atlas = ExtResource("1_wkndv")
+region = Rect2(400, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvkal"]
+atlas = ExtResource("1_wkndv")
+region = Rect2(416, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqsn5"]
+atlas = ExtResource("1_wkndv")
+region = Rect2(432, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnmie"]
+atlas = ExtResource("1_wkndv")
+region = Rect2(448, 144, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xn64y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32vr6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvu30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvkal")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqsn5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnmie")
+}],
+"loop": true,
+"name": &"default",
+"speed": 11.0
+}]
+
+[node name="winArea" type="Area2D"]
+script = ExtResource("1_lc7x4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.799977, 0.799977)
+shape = SubResource("RectangleShape2D_lc7x4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xn64y")
+frame = 4
+frame_progress = 0.49598432
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

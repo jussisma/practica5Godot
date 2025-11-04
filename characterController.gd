@@ -11,6 +11,7 @@ var isX:bool
 var target_rotation:float
 @export var dying:bool = false
 @export var pincho:bool = false
+var won:bool = false
 
 func _process(delta: float) -> void:
 	if not is_moving and not dying:
@@ -20,7 +21,7 @@ func _process(delta: float) -> void:
 		
 
 func _physics_process(delta: float) -> void:
-	if not dying:
+	if not dying and not won:
 		if not is_moving or canMove:
 			if Input.is_action_just_pressed("dash_right"):
 				velocity = Vector2.RIGHT * DASH_SPEED
@@ -64,6 +65,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		sprite.animation_finished.connect(eliminar)
 		pincho = false
 		GameManager.play_sfx("muerte")
+		GameManager.displayResult(false)
 		
 		
 func eliminar() -> void:
@@ -80,3 +82,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		sprite.animation_finished.connect(eliminar)
 		pincho = false
 		GameManager.play_sfx("muerte")
+		GameManager.displayResult(false)
+	if area.is_in_group("win"):
+		won = true
+		GameManager.displayResult(true)

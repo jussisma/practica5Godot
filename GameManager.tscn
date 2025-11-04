@@ -13,3 +13,6 @@ volume_db = -34.33
 
 [node name="SFXPlayerMusic" type="AudioStreamPlayer2D" parent="."]
 volume_db = -46.447
+
+[node name="SFXPlayerWIn" type="AudioStreamPlayer2D" parent="."]
+volume_db = -27.313

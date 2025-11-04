@@ -4,10 +4,19 @@ const SONIDO_MUERTE = preload("res://Sound/Hurt.wav")
 const SONIDO_MOVIMIENTO = preload("res://Sound/Jump.wav")
 const SONIDO_CONSUMIBLE = preload("res://Sound/pickupCoin.wav")
 const MUSICA = preload("res://Sound/Music.wav")
+const WIN = preload("res://Sound/win.mp3")
 @onready var sfx_player: AudioStreamPlayer2D = $SFXPlayer
 @onready var sfx_player_movement: AudioStreamPlayer2D = $SFXPlayerMovement
 @onready var sfx_player_music: AudioStreamPlayer2D = $SFXPlayerMusic
+@onready var node_2d: Node2D = $Node2D
+@onready var sfx_player_win: AudioStreamPlayer2D = $SFXPlayerWIn
 
+signal game_over(hasWon)
+
+func displayResult(hasWon:bool):
+	# En lugar de tocar el Label, emite la señal
+	# y envía el resultado (victoria o derrota).
+	game_over.emit(hasWon)
 
 # Aquí se guarda la puntuación
 var score: int = 0
@@ -25,6 +34,7 @@ func play_sfx(nombre):
 		sfx_player.stream = SONIDO_CONSUMIBLE
 	sfx_player.play()
 	sfx_player_movement.play()
+	sfx_player_win.play()
 	
 	
 

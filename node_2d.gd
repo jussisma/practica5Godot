@@ -4,6 +4,7 @@ const CONSUMIBLE_PEQUENO_SCENE = preload("res://consumiblePeque.tscn")
 const CONSUMIBLE_GRANDE_SCENE = preload("res://consuGrande.tscn")
 const CHARACTER = preload("res://character.tscn")
 const DEATH_AREA = preload("res://deathArea.tscn")
+const WIN_AREA = preload("res://win_area.tscn")
 
 @onready var tilemap: TileMapLayer = $Bloques
 @onready var consumibles_container: Node2D = $Consumibles
@@ -15,7 +16,11 @@ const DEATH_AREA = preload("res://deathArea.tscn")
 var instanciaCharacter = CHARACTER.instantiate()
 var deathArea = DEATH_AREA.instantiate()
 var toDie:bool = false
+var winArea = WIN_AREA.instantiate()
 @onready var camera: Camera2D = $Camera2D
+@onready var result_container: Node2D = $resultContainer
+@onready var result_label: Label = $resultContainer/resultLabel
+@onready var camara: Camera2D = $Camera2D
 
 func _ready():
 	self.add_child(instanciaCharacter)
@@ -27,7 +32,25 @@ func _ready():
 	deathArea.global_position = Vector2(110,445)
 	deathArea.global_scale = Vector2(5,2.921)
 	deathArea.add_to_group("spikes")
+	self.add_child(winArea)
+	winArea.global_position = Vector2(8,-360)
+	winArea.global_scale = Vector2(1,1)
+	winArea.add_to_group("win")
 	spawn_objetos_desde_tilemap()
+	GameManager.game_over.connect(_on_game_over)
+
+func _on_game_over(hasWon:bool):
+	# Esta función se ejecuta cuando GameManager emite la señal
+	if hasWon:
+		result_container.global_position = instanciaCharacter.global_position + Vector2(0,-100)
+		result_label.text = "Has Ganado"
+	else:
+		result_container.global_position = instanciaCharacter.global_position + Vector2(0,-100)
+		result_label.text = "Has Perdido"
+		
+	# (Aquí también puedes mostrar tu nodo "lol" que tenías en el GameManager)
+	# @onready var lol: Node2D = $lol # (Si "lol" también está en esta escena)
+	# lol.global_position = Vector2(100,100)
 	
 	
 	# --- CORRECCIÓN 1 ---
@@ -41,6 +64,7 @@ func _process(delta: float) -> void:
 	# --- CORRECCIÓN 3 ---
 	# Comprueba si la instancia es válida ANTES de acceder a ella.
 	if is_instance_valid(instanciaCharacter):
+		camara.global_position = instanciaCharacter.global_position
 		# Si es válida, comprueba si está muriendo
 		if instanciaCharacter.dying == true:
 			# Si está muriendo Y el timer está parado, inícialo
