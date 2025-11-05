@@ -1,11 +1,17 @@
 extends Camera2D
 
-@onready var character_body_2d_2: CharacterBody2D = $"../CharacterBody2D2"
-var parent = self.get_parent()
-var character
-@onready var node_2d: Node2D = $".."
+@export var target_character: Node2D 
+
+func _ready() -> void:
+	if target_character:
+		self.target_node_path = target_character.get_path()
+
+	self.drag_vertical_enabled = true
+	
+	self.drag_horizontal_enabled = false
+	
+	self.drag_top_margin = 0.3
+	self.drag_bottom_margin = 0.5
+
 func _process(delta: float) -> void:
-	for child in node_2d.get_children():
-		if child is CharacterBody2D:
-			character = child
-	self.global_position = character.global_position
+	self.global_position.x = 91

@@ -74,7 +74,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"dash2",
-"speed": 5.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -127,11 +127,13 @@ size = Vector2(22, 28)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_pjt0s")
+DASH_SPEED = 400.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_c1b4b")
 animation = &"dash2"
+frame_progress = 0.906508
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

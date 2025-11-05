@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=4 uid="uid://c05e44ee2p23i"]
+[gd_scene load_steps=19 format=4 uid="uid://c05e44ee2p23i"]
 
 [ext_resource type="Script" uid="uid://d3foao07uv5k5" path="res://node_2d.gd" id="1_kdubu"]
 [ext_resource type="Texture2D" uid="uid://cwg5h8xoj8mwb" path="res://Sprites/Space Cave Tileset.png" id="1_wtcfe"]
 [ext_resource type="Texture2D" uid="uid://dm8oa6x27i2qx" path="res://Sprites/Purple Effect and Bullet 16x16.png" id="3_epypp"]
-[ext_resource type="Script" uid="uid://ctt1q7phf2fld" path="res://label.gd" id="6_kdubu"]
+[ext_resource type="Script" uid="uid://xm5qwoolxynh" path="res://camara.gd" id="6_d21ai"]
+[ext_resource type="Script" path="res://label.gd" id="6_kdubu"]
 [ext_resource type="Texture2D" uid="uid://boo7u2o1aj8tc" path="res://Sprites/Fire Effect and Bullet 16x16.png" id="7_rj586"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0e48y"]
@@ -1186,12 +1187,14 @@ script = ExtResource("6_kdubu")
 [node name="Consumibles" type="Node2D" parent="."]
 
 [node name="TileMapLayerObjetos" type="TileMapLayer" parent="."]
+visible = false
 tile_map_data = PackedByteArray("AAANAAUAAQAOAAcAAAAMAAUAAQAOAAcAAAALAAUAAAAKAAgAAAALAAYAAQAOAAcAAAALAAcAAQAOAAcAAAAKAAcAAQAOAAcAAAAJAAcAAQAOAAcAAAAIAAcAAQAOAAcAAAAHAAcAAQAOAAcAAAAOAAUAAQAOAAcAAAADAAUAAQAOAAcAAAACAAUAAQAOAAcAAAABAAUAAQAOAAcAAAAAAAUAAQAOAAcAAAD//wUAAQAOAAcAAAD+/wQAAQAOAAcAAAD+/wMAAQAOAAcAAAD+/wIAAQAOAAcAAAD+/wEAAQAOAAcAAAD+/wAAAQAOAAcAAAD9/wAAAQAOAAcAAAD8//z/AQAOAAcAAAD8//3/AQAOAAcAAAD8//7/AQAOAAcAAAD8////AQAOAAcAAAD+//v/AQAOAAcAAAD9//v/AQAOAAcAAAABAAAAAQAOAAcAAAACAAAAAQAOAAcAAAADAP7/AQAOAAcAAAADAP3/AQAOAAcAAAADAPz/AQAOAAcAAAADAPv/AQAOAAcAAAADAPr/AQAOAAcAAAADAP//AQAOAAcAAAACAPn/AQAOAAcAAAABAPn/AQAOAAcAAAAAAPn/AQAOAAcAAAAAAPj/AQAOAAcAAAD///j/AQAOAAcAAAD+//f/AQAOAAcAAAD+//b/AQAOAAcAAAD+//X/AQAOAAcAAAD///T/AQAOAAcAAAAAAPT/AQAOAAcAAAABAPT/AQAOAAcAAAACAPT/AQAOAAcAAAADAPT/AQAOAAcAAAAEAPT/AQAOAAcAAAAFAPT/AQAOAAcAAAAGAPX/AQAOAAcAAAAGAPb/AQAOAAcAAAAGAPf/AQAOAAcAAAAGAPj/AQAOAAcAAAAHAPn/AQAOAAcAAAAIAPn/AQAOAAcAAAAJAPn/AQAOAAcAAAAKAPn/AQAOAAcAAAALAPn/AQAOAAcAAAAMAPj/AQAOAAcAAAAMAPf/AQAOAAcAAAAMAPb/AQAOAAcAAAANAPX/AQAOAAcAAAAOAPX/AQAOAAcAAAAPAPT/AQAOAAcAAAAPAPP/AQAOAAcAAAAPAPL/AQAOAAcAAAAPAPH/AQAOAAcAAAAOAPD/AQAOAAcAAAANAPD/AQAOAAcAAAAMAO//AQAOAAcAAAAMAO7/AQAOAAcAAAAMAO3/AQAOAAcAAAAMAOz/AQAOAAcAAAAMAOv/AQAOAAcAAAALAOr/AQAOAAcAAAAKAOr/AQAOAAcAAAAJAOr/AQAOAAcAAAAIAOr/AQAOAAcAAAAHAOv/AQAOAAcAAAAHAOz/AQAOAAcAAAAHAO3/AQAOAAcAAAAHAO7/AQAOAAcAAAAGAO//AQAOAAcAAAAFAO//AQAOAAcAAAAEAO//AQAOAAcAAAADAO//AQAOAAcAAAACAO//AQAOAAcAAAABAO//AQAOAAcAAAAAAO7/AQAOAAcAAAAAAO3/AQAOAAcAAAAAAOz/AQAOAAcAAAAAAOv/AQAOAAcAAAAAAOr/AQAOAAcAAAA=")
 tile_set = SubResource("TileSet_d21ai")
 
 [node name="ConsumiblesGrandes" type="Node2D" parent="."]
 
 [node name="TileMapLayerObjetosGrandes" type="TileMapLayer" parent="."]
+visible = false
 tile_map_data = PackedByteArray("AAAPAAUAAAAMAAcAAAALAAUAAAAMAAcAAAADAAQAAAAMAAcAAAD+/wUAAAAMAAcAAAD8/wAAAAAMAAcAAAADAAAAAAAMAAcAAAD8//v/AAAMAAcAAAADAPn/AAAMAAcAAAD+//j/AAAMAAcAAAD+//T/AAAMAAcAAAAGAPT/AAAMAAcAAAAGAPn/AAAMAAcAAAAMAPn/AAAMAAcAAAAMAPX/AAAMAAcAAAAPAPX/AAAMAAcAAAAPAPD/AAAMAAcAAAAMAPD/AAAMAAcAAAAMAOr/AAAMAAcAAAAHAOr/AAAMAAcAAAAHAO//AAAMAAcAAAAAAO//AAAMAAcAAAA=")
 tile_set = SubResource("TileSet_ir8iy")
 
@@ -1205,5 +1208,7 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(91, 0)
+script = ExtResource("6_d21ai")
 
 [connection signal="timeout" from="TimerMuerte" to="." method="_on_timer_muerte_timeout"]

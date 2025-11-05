@@ -1,16 +1,12 @@
 extends CharacterBody2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var deteccion: Area2D = $Area2D
-var isGrounded:bool
-@export var NORMAL_SPEED: float = 200.0
 @export var DASH_SPEED: float = 800.0    
-@export var DASH_DURATION: float = 0.15
 var is_moving:bool = false
 var canMove:bool = true
 var isX:bool
 var target_rotation:float
 @export var dying:bool = false
-@export var pincho:bool = false
 var won:bool = false
 
 func _process(delta: float) -> void:
@@ -58,12 +54,10 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("spikes"):
-		pincho = true
 		dying = true
 		rotation_degrees = 0
 		sprite.play("death")
 		sprite.animation_finished.connect(eliminar)
-		pincho = false
 		GameManager.play_sfx("muerte")
 		GameManager.displayResult(false)
 		
@@ -75,12 +69,10 @@ func eliminar() -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("spikes"):
-		pincho = true
 		dying = true
 		rotation_degrees = 0
 		sprite.play("death")
 		sprite.animation_finished.connect(eliminar)
-		pincho = false
 		GameManager.play_sfx("muerte")
 		GameManager.displayResult(false)
 	if area.is_in_group("win"):
