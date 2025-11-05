@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://7tuoyghf6kgr" path="res://consu_grande.gd" id="2_fx75m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fx75m"]
-radius = 8.0
+radius = 5.0
 
 [node name="Area2D" type="Area2D" groups=["consumibleGrande"]]
 position = Vector2(-6, -6)
